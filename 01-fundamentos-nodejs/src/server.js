@@ -5,6 +5,14 @@ const users = [];
 const server = http.createServer((req, res) => {
   const { method, url } = req;
 
+  const buffers = [];
+
+  for await (const chunk of req) {
+    buffers.push(chunk);
+  }
+
+  const body = Buffer.concat(buffers).toString();
+
   if (method === "GET" && url === "/users") {
     return res
       .setHeader("Content-type", "application/json")
@@ -21,7 +29,7 @@ const server = http.createServer((req, res) => {
     return res.writeHead(201).end();
   }
 
-  return res.writeHead(404).end("Not Found");
+  return res.writeHead(404).end();
 });
 
-server.listen(3000);
+server.listen(3333);
