@@ -5,7 +5,9 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "lint": "eslint src --ext .ts --fix"
+    "knex": "node --loader tsx ./node_modules/knex/bin/cli.js",
+    "lint": "eslint src --ext .ts --fix",
+    "kne": "node --no-warnings --import tsx ./node_modules/knex/bin/cli.js migrate:make create-documents"
   },
   "compilerOptions": {
     "module": "module"
@@ -21,6 +23,8 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "fastify": "^5.5.0"
+    "fastify": "^5.5.0",
+    "knex": "^3.1.0",
+    "sqlite3": "^5.1.7"
   }
 }
