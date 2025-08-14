@@ -5,9 +5,10 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "knex": "node --loader tsx ./node_modules/knex/bin/cli.js",
+    "knex": "node --import tsx ./node_modules/knex/bin/cli.js",
+    "migrate": "npm run knex -- migrate:latest",
     "lint": "eslint src --ext .ts --fix",
-    "kne": "node --no-warnings --import tsx ./node_modules/knex/bin/cli.js migrate:make create-documents"
+    "kne": "node --no-warnings --import tsx ./node_modules/knex/bin/cli.js migrate:make create-transations"
   },
   "compilerOptions": {
     "module": "module"
