@@ -2,6 +2,7 @@ tmp/app.db
 node_modules/
 .DS_Store
 .env
+.env.test
 dist/
 .vscode/
 *.log
