@@ -89,9 +89,9 @@ Dotenv
 ## 📌 Estrutura do Projeto
 
 API_Rest/
-├── src/
-│ ├── env/ # Configuração de variáveis de ambiente
-│ │ └── index.ts
+├── src/<br>
+│ ├── env/ # Configuração de variáveis de ambiente<br>
+│ │ └── index.ts<br>
 │ ├── server.ts # Arquivo principal do servidor
 │ └── ... # Outras rotas, controllers e serviços
 ├── db/ # Banco de dados SQLite
