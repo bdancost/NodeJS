@@ -88,16 +88,16 @@ Dotenv
 
 ## 📌 Estrutura do Projeto
 
-API_Rest/
-├── src/
-│ ├── env/ # Configuração de variáveis de ambiente
-│ │ └── index.ts
-│ ├── server.ts # Arquivo principal do servidor
-│ └── ... # Outras rotas, controllers e serviços
-├── db/ # Banco de dados SQLite
-│ └── app.db
-├── .env # Variáveis de ambiente (não versionado)
-├── .env.example # Exemplo de variáveis de ambiente
-├── package.json
-├── tsconfig.json
-└── README.md
+📂 API_Rest
+├── 📂 src
+│ ├── 📂 env
+│ │ └── 📄 index.ts
+│ ├── 📄 server.ts
+│ └── ... outras rotas, controllers e serviços
+├── 📂 db
+│ └── 📄 app.db
+├── 📄 .env
+├── 📄 .env.example
+├── 📄 package.json
+├── 📄 tsconfig.json
+└── 📄 README.md
