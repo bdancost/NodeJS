@@ -1,9 +1,22 @@
 tmp/app.db
+
+# Dependencies
 node_modules/
 .DS_Store
+
+#Environment variables
 .env
 .env.test
+
+# Build output
+build/
 dist/
+
+# Database
+db/*.db
+
+*.js
+build/
 .vscode/
 *.log
 *.sqlite

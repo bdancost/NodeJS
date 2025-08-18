@@ -8,6 +8,7 @@
     "knex": "node --import tsx ./node_modules/knex/bin/cli.js",
     "migrate": "npm run knex -- migrate:latest",
     "lint": "eslint src --ext .ts --fix",
+    "build": "tsup src --out-dir build",
     "kne": "node --no-warnings --import tsx ./node_modules/knex/bin/cli.js migrate:make create-transations",
     "test": "vitest"
   },
@@ -23,6 +24,8 @@
     "eslint-plugin-prettier": "^5.5.4",
     "prettier": "^3.6.2",
     "supertest": "^7.1.4",
+    "tsconfig-paths": "^4.2.0",
+    "tsup": "^8.5.0",
     "tsx": "^4.20.4",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
