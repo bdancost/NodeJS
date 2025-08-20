@@ -27,3 +27,4 @@ coverage/
 *.so
 *.dmg
 *.pkg     
+/src/generated/prisma
