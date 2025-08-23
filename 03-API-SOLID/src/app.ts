@@ -1,14 +1,25 @@
 import fastify from 'fastify'
-import { PrismaClient } from './generated/prisma/index.js'
+import { z } from 'zod'
+import { prisma } from './lib/prisma.js'
 
 export const app = fastify({})
 
-// ORM - Object Relational Mapping
-const prisma = new PrismaClient()
+app.post('/users', async (request, reply) => {
+  const registerBodySchema = z.object({
+    name: z.string(),
+    email: z.string().email(),
+    password: z.string().min(6),
+  })
 
-prisma.user.create({
-  data: {
-    name: 'John Doe',
-    email: 'john@doe',
-  },
+  const { name, email, password } = registerBodySchema.parse(request.body)
+
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+      password_hash: password,
+    },
+  })
+
+  return reply.status(201).send()
 })
