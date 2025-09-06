@@ -12,7 +12,7 @@ export async function nearby(request: FastifyRequest, reply: FastifyReply) {
     }, 'Longitude must be between -180 and 180'),
   })
 
-  const { latitude, longitude } = nearbyGymBodySchema.parse(request.body)
+  const { latitude, longitude } = nearbyGymBodySchema.parse(request.query)
 
   const fetchNearbyGymsUseCase = makeFetchNearbyGymsUseCase()
 
