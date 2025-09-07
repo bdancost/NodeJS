@@ -6,7 +6,6 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   const createGymBodySchema = z.object({
     title: z.string(),
     description: z.string().nullable(),
-    password: z.string().min(6),
     phone: z.string(),
     latitude: z.number().refine((val) => {
       return Math.abs(val) >= -90 && val <= 90
