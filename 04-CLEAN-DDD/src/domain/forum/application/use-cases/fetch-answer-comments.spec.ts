@@ -30,12 +30,12 @@ describe('Fetch Qustion Comments', () => {
         answerId: new UniqueEntityID('answer-1'),
       })
     )
-    const { answerComments } = await sut.execute({
+    const result = await sut.execute({
       answerId: 'answer-1',
       page: 1,
     })
 
-    expect(answerComments).toHaveLength(3)
+    expect(result.value?.answerComments).toHaveLength(3)
   })
 
   it.skip('should be able to fetch pagination answers comments', async () => {
@@ -43,11 +43,11 @@ describe('Fetch Qustion Comments', () => {
       await inMemoryAnswerCommentsRepository.create(makeAnswerComment({ answerId: new UniqueEntityID('answer-1') }))
     }
 
-    const { answerComments } = await sut.execute({
+    const result = await sut.execute({
       answerId: 'answer-1',
       page: 2,
     })
 
-    expect(answerComments).toHaveLength(2)
+    expect(result.value?.answerComments).toHaveLength(2)
   })
 })
