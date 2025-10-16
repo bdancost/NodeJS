@@ -4,11 +4,16 @@ import { ResourceNotFoundError } from './errors/resource-not-found-error.js'
 import { NotAllowedError } from './errors/not-allowed-error.js'
 import { left, right } from '@/core/either.js'
 import type { Either } from '@/core/either.js'
+import type { AnswerAttachmentsRepository } from '../repositories/answer-attachments-repository.js'
+import { AnswerAttachment } from '../../enterprise/entities/answer-attachment.js'
+import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachemnt-list.js'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id.js'
 
 interface EditAnswerUseCaseRequest {
   authorId: string
   answerId: string
   content: string
+  attachmentsIds: string[]
 }
 
 type EditAnswerUseCaseResponse = Either<
@@ -19,9 +24,17 @@ type EditAnswerUseCaseResponse = Either<
 >
 
 export class EditAnswerUseCase {
-  constructor(private answersRepository: AnswersRepository) {}
+  constructor(
+    private answersRepository: AnswersRepository,
+    private answerAttachmentsRepository: AnswerAttachmentsRepository
+  ) {}
 
-  async execute({ answerId, authorId, content }: EditAnswerUseCaseRequest): Promise<EditAnswerUseCaseResponse> {
+  async execute({
+    authorId,
+    answerId,
+    content,
+    attachmentsIds,
+  }: EditAnswerUseCaseRequest): Promise<EditAnswerUseCaseResponse> {
     const answer = await this.answersRepository.findById(answerId)
 
     if (!answer) {
@@ -31,6 +44,21 @@ export class EditAnswerUseCase {
     if (authorId !== answer.authorID.toString()) {
       return left(new NotAllowedError())
     }
+
+    const currentAnswerAttachments = await this.answerAttachmentsRepository.findManyByAnswerId(answerId)
+
+    const answerAttachmentList = new AnswerAttachmentList(currentAnswerAttachments)
+
+    const answerAttachments = attachmentsIds.map((attachmentsIds) => {
+      return AnswerAttachment.create({
+        attachmentId: new UniqueEntityID(attachmentsIds),
+        answerId: answer.id,
+      })
+    })
+
+    answerAttachmentList.update(answerAttachments)
+
+    answer.attachments = answerAttachmentList
 
     answer.content = content
 
