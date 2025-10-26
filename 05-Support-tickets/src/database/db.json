@@ -1,1 +1,22 @@
-{"tickets":[{"id":"5eec51eb-da88-4c47-92f4-7d88dab7e7a9","equipment":"Notebook","description":"Notebook não liga","user_name":"Daniel Fernandes","status":"open","created_at":"2025-10-26T16:46:03.816Z","updated_at":"2025-10-26T16:46:03.816Z"},{"id":"c7775746-5a7c-47d4-90d1-f11fdd4ee8f3","equipment":"Teclado","description":"A tecla space não fucniona","user_name":"Diego Fernandes","status":"open","created_at":"2025-10-26T18:07:15.967Z","updated_at":"2025-10-26T18:07:15.967Z"}]}
+{
+  "tickets": [
+    {
+      "id": "5eec51eb-da88-4c47-92f4-7d88dab7e7a9",
+      "equipment": "Notebook",
+      "description": "Notebook não liga",
+      "user_name": "Daniel Fernandes",
+      "status": "open",
+      "created_at": "2025-10-26T16:46:03.816Z",
+      "updated_at": "2025-10-26T16:46:03.816Z"
+    },
+    {
+      "id": "c7775746-5a7c-47d4-90d1-f11fdd4ee8f3",
+      "equipment": "Teclado",
+      "description": "A tecla space não fucniona",
+      "user_name": "Diego Fernandes",
+      "status": "closed",
+      "created_at": "2025-10-26T18:07:15.967Z",
+      "updated_at": "2025-10-26T18:07:15.967Z"
+    }
+  ]
+}
