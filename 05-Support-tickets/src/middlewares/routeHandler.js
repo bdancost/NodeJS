@@ -1,4 +1,7 @@
 import { routes } from '../routes/index.js'
+import { Database } from '../database/database.js'
+
+const database = new Database()
 
 export function routeHandler(req, res) {
   const route = routes.find((route) => {
@@ -6,7 +9,7 @@ export function routeHandler(req, res) {
   })
 
   if (route) {
-    return route.controllers({ req, res })
+    return route.controllers({ req, res, database })
   }
 
   return res.writeHead(404).end()
