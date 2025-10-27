@@ -19,6 +19,7 @@ app.post('/products/', (request, response) => {
   response.status(201).json({
     name,
     price,
+    user_id: request.user_id,
   })
 })
 
