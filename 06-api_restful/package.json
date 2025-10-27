@@ -1,0 +1,16 @@
+{
+  "name": "06-api_restful",
+  "version": "1.0.0",
+  "description": "Criando uma API RESTful com Node.js",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "author": "Daniel Fernandes",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
+  }
+}
