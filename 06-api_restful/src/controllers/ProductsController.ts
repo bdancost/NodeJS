@@ -11,6 +11,10 @@ export class ProductsController {
   create(request: Request, response: Response) {
     const { name, price } = request.body
 
+    if (!name || !price) {
+      throw new AppError('Name and price is required')
+    }
+
     response.status(201).json({
       name,
       price,
