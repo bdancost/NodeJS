@@ -1,5 +1,7 @@
 import { Request, Response } from 'express'
 
+import { AppError } from '../utils/AppError'
+
 export class ProductsController {
   index(request: Request, response: Response) {
     const { page, limit } = request.query
