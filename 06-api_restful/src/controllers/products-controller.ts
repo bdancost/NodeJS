@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { AppError } from '../utils/AppError'
+import { AppError } from '../utils/app-error'
 
 export class ProductsController {
   index(request: Request, response: Response) {
@@ -11,8 +11,20 @@ export class ProductsController {
   create(request: Request, response: Response) {
     const { name, price } = request.body
 
-    if (!name || !price) {
-      throw new AppError('Name and price is required')
+    if (!name) {
+      throw new AppError('Name is required')
+    }
+
+    if (name.trim().length < 6) {
+      throw new AppError('Name must be at least 3 characters')
+    }
+
+    if (!price) {
+      throw new AppError('Price is required')
+    }
+
+    if (price < 0) {
+      throw new AppError('Price must be greater than 0')
     }
 
     response.status(201).json({
