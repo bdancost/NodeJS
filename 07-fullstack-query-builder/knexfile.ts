@@ -8,4 +8,8 @@ export default {
     directory: './src/database/migrations',
   },
   useNullAsDefault: true,
+  seeds: {
+    extension: 'ts',
+    directory: './src/database/seeds',
+  },
 }
