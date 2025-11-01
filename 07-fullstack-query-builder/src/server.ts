@@ -14,4 +14,10 @@ app.post('/courses', async (request: Request, response: Response) => {
   response.status(201).json()
 })
 
+app.get('/courses', async (request: Request, response: Response) => {
+  const courses = await knex('courses').select()
+
+  response.json(courses)
+})
+
 app.listen(3333, () => console.log(`Server is running on port 3333`))
