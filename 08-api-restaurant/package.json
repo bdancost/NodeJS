@@ -1,0 +1,10 @@
+{
+  "name": "08-api-restaurant",
+  "version": "1.0.0",
+  "description": "API para gerenciar pedidos das mesas de um restaurante.",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Daniel Fernandes",
+  "license": "ISC",
+  "type": "commonjs"
+}
