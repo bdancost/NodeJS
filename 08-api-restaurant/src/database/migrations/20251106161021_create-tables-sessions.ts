@@ -5,7 +5,7 @@ export async function up(knex: Knex): Promise<void> {
     table.increments('id').primary()
     table.integer('table_id').notNullable().references('id').inTable('tables')
     table.timestamp('opened_at').defaultTo(knex.fn.now())
-    table.timestamp('closed_at')
+    table.time('closed_at')
   })
 }
 
