@@ -1,87 +1,68 @@
-# 🚀 API Rest com Node.js + TypeScript + Fastify
+# API REST de Transações Financeiras
 
-Este projeto é uma API Rest construída com **Node.js**, **TypeScript**, **Fastify**, **Knex** e **SQLite**.  
-Ele foi desenvolvido como parte de estudos e práticas em desenvolvimento backend.
-
----
-
-## 📋 Requisitos
-
-Antes de começar, certifique-se de ter instalado na sua máquina:
-
-- [Node.js](https://nodejs.org/) (v18 ou superior, testado em v24)
-- [npm](https://www.npmjs.com/) (v9 ou superior)
+API para estudo e prática de backend com Node.js e TypeScript, implementando criação, listagem e resumo de transações financeiras (entradas e saídas), com persistência em SQLite.
 
 ---
 
-## ⚙️ Configuração do Ambiente
+## Tecnologias
 
-Antes de rodar o projeto, você precisa configurar as variáveis de ambiente.
+![Node](https://img.shields.io/badge/Node.js-18.x-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Fastify](https://img.shields.io/badge/Fastify-API-purple)
+![Knex](https://img.shields.io/badge/Knex-QueryBuilder-orange)
+![SQLite](https://img.shields.io/badge/SQLite-DB-grey)
+![Vitest](https://img.shields.io/badge/Tests-Vitest-yellow)
 
-1. Copie o arquivo de exemplo:
+---
+
+## Como funciona a lógica da aplicação
+
+Fluxo principal de funcionamento:
+
+1. o cliente chama a API
+2. se não existir cookie `session_id`, o backend cria um
+3. a cada request, o middleware `check-session-id-exists` garante que há uma sessão
+4. o `controller` de rotas recebe a chamada
+5. o serviço chama o Knex
+6. salva / lê os dados na tabela `transactions` no SQLite
+7. retorna o JSON padronizado
+
+**modelagem de negócio:**
+
+- transação pode ser `credit` (entrada) ou `debit` (saída)
+- o summary calcula: total = SOMA(credit) - SOMA(debit)
+
+---
+
+## Arquitetura
+
+| pasta / arquivo    | função                                   |
+| ------------------ | ---------------------------------------- |
+| `/src`             | código fonte principal da aplicação      |
+| `/src/routes`      | rotas HTTP (ex: transactions)            |
+| `/src/middlewares` | validação de sessão / cookies            |
+| `/src/env`         | variáveis de ambiente                    |
+| `/db/migrations`   | scripts de criação e alteração de tabela |
+| `test/*.spec.ts`   | testes automatizados com Vitest          |
+
+---
+
+## Como rodar localmente
 
 ```bash
-cp .env.example .env
-```
-
-2. Abra o arquivo .env e ajuste as variáveis conforme necessário:
-
-# Ambiente da aplicação
-
-NODE_ENV=development
-
-# Caminho para o banco SQLite
-
-DATABASE_URL=./db/app.db
-
-# Porta da aplicação
-
-PORT=3333
-
-🔒 O arquivo .env não deve ser versionado no Git. Ele já está listado no .gitignore.
-
-## 📦 Instalação
-
-Clone o repositório e instale as dependências:
-
-git clone https://github.com/seu-usuario/API_Rest.git
-cd API_Rest
 npm install
-
-## 🚀 Rodando o Projeto
-
-Para iniciar o servidor em modo de desenvolvimento:
-
 npm run dev
 
-Se tudo estiver certo, você verá no terminal:
-
-HTTP Server Running!
-
-## 🗄️ Banco de Dados
-
-Este projeto utiliza SQLite como banco de dados.
-
-Crie a pasta de banco de dados (caso não exista):
-
-mkdir -p db
-
-Rode as migrações (se configuradas no Knex):
 
 npm run knex -- migrate:latest
 
-## 🛠️ Tecnologias Utilizadas
+npm run test
 
-Node.js
 
-TypeScript
-
-Fastify
-
-Knex.js
-
-SQLite
-
-Zod
-
-Dotenv
+Endpoints
+Método	Rota	O que faz
+POST	/transactions	cria uma nova transação
+GET	/transactions	lista todas transações do usuário
+GET	/transactions/:id	busca uma transação específica
+GET	/transactions/summary	retorna o saldo (entradas - saídas)
+```
