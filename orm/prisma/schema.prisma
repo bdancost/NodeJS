@@ -1,6 +1,5 @@
-
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -9,9 +8,26 @@ datasource db {
 }
 
 model User {
-  id        String      @id @default(uuid())
-  name      String
-  email     String   @unique
-  
+  id    String @id @default(uuid())
+  name  String
+  email String @unique
+
+  questions Question[]
+
   @@map("users")
+}
+
+model Question {
+  id      String @id @default(uuid())
+  title   String
+  content String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  userId String @map("user_id")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("questions")
 }
