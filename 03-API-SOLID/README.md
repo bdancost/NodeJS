@@ -1,32 +1,115 @@
-#App
+# API SOLID — Gympass Style App
 
-Gympass style app.
+API desenvolvida em Node.js com arquitetura SOLID, modelando um sistema no estilo Gympass, onde usuários podem se registrar, autenticar, buscar academias próximas, realizar check-ins e consultar seu histórico, métricas e perfil.
 
-## RFs (Requisito funcionais)
+---
 
-- [x] Deve ser possível se cadastrar;
-- [x] Deve ser possível se autenticar;
-- [x] Deve ser possível obter o perfil de um usuário logado;
-- [x] Deve ser possível obter o número de check-ins realizados pelo usuário logado;
-- [x] Deve ser possível o usuário obter seu histórico de check-ins;
-- [x] Deve ser possível o usuário buscar academias próximas (até 10km);
-- [x] Deve ser possível o usuário buscar academias pelo nome;
-- [x] Deve ser possível o usuário realizar check-in em uma academia;
-- [x] Deve ser possível validar o check-in de um usuário;
-- [x] Deve ser possível cadastrar uma academia;
+## Tecnologias
 
-## RNs (Regras de negócio)
+![Node](https://img.shields.io/badge/Node.js-18.x-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Fastify](https://img.shields.io/badge/Fastify-API-purple)
+![Prisma](https://img.shields.io/badge/Prisma-ORM-black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-DB-blue)
+![JWT](https://img.shields.io/badge/JWT-Auth-yellow)
+![Vitest](https://img.shields.io/badge/Tests-Vitest-yellow)
 
-- [x] O usuário não deve poder se cadastrar com um e-mail duplicado;
-- [x] O usuário não pode fazer 2 check-ins no mesmo dia;
-- [x] O usuário não pode fazer check-in se não estiver perto (100m) da academia;
-- [x] O check-in só pode ser validade até 20 minutos após criado;
-- [] O check-in só pode ser validade por administradores;
-- [] A academia só pode ser cadastrada por administradores;
+---
 
-## RNFs (Requisitos não-funcionaiss)
+## Arquitetura / Domínios
 
-- [x] A senha do usuário precisa estar criptografada;
-- [x] Os dados da aplicação precisa estar persistidos em um banco PostgreSQL;
-- [x] Todas listas de dados precisam estar paginadas com 20 itens por página;
-- [] O usuário deve ser identificado por um JWT (JSON Web Token)
+| layer                   | função                                                        |
+| ----------------------- | ------------------------------------------------------------- |
+| `/http/controllers`     | Entrada do HTTP (Fastify)                                     |
+| `/use-cases`            | regras de negócio (casos de uso)                              |
+| `/repositories`         | contrato de persistência (interfaces + implementações Prisma) |
+| `/lib/prisma.ts`        | client ORM com conexão PostgreSQL                             |
+| `/prisma/schema.prisma` | modelagem do banco                                            |
+| `/env`                  | variáveis de ambiente                                         |
+| `/utils`                | funções utilitárias (ex: cálculo de distância GPS)            |
+
+**Fluxo de execução:**
+Request HTTP → **Controller** → **Use Case** (regra) → **Repository** (abstração) → **Prisma** (DB real) → Response JSON
+
+---
+
+## Requisitos Funcionais (RFs)
+
+- Deve ser possível se cadastrar
+- Deve ser possível se autenticar
+- Deve ser possível obter o perfil do usuário logado
+- Deve ser possível obter número de check-ins do usuário logado
+- Deve ser possível buscar academias próximas (≤ 10km)
+- Deve ser possível buscar academias por nome
+- Deve ser possível realizar check-in
+- Deve ser possível validar check-in
+- Deve ser possível cadastrar academia
+
+---
+
+## Regras de Negócio (RNs)
+
+- Não pode cadastrar com email duplicado
+- Não pode fazer mais de 1 check-in no mesmo dia
+- Só pode check-in se estiver perto (≤ 100m)
+- Check-in só pode ser validado até 20min após criado
+- [ ] Apenas admins podem validar check-in
+- [ ] Apenas admins podem cadastrar academias
+
+---
+
+## Requisitos Não-Funcionais (RNFs)
+
+- Senha precisa estar criptografada
+- Dados persistidos em PostgreSQL
+- Listagens devem ser paginadas com 20 itens/página
+- [ ] Usuário deve ser identificado por JWT
+
+---
+
+## Como rodar local
+
+**1) configure variáveis ambiente**
+
+crie `.env` baseado no `.env.example` e aponte para seu banco PostgreSQL
+
+**2) instale dependências**
+
+```bash
+npm install
+
+**3) execute migrações**
+
+npx prisma migrate dev
+
+**4) execute o server**
+
+npm run dev
+
+
+## Testes
+
+npm run test
+
+# Passo-a-passo da lógica utilizada
+
+Controller recebe request (Fastify)
+
+Controller chama use-case
+
+Use Case aplica regra de negócio (ex: verifica distância)
+
+Use Case chama repositório
+
+Repositório chama Prisma
+
+Prisma executa SQL no PostgreSQL
+
+Retorna DTO padronizado ao cliente
+
+Com isso o código fica limpo, isolado e fácil de manter.
+
+
+
+
+```
