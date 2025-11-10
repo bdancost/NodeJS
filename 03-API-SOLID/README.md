@@ -53,8 +53,8 @@ Request HTTP → **Controller** → **Use Case** (regra) → **Repository** (abs
 - Não pode fazer mais de 1 check-in no mesmo dia
 - Só pode check-in se estiver perto (≤ 100m)
 - Check-in só pode ser validado até 20min após criado
-- [ ] Apenas admins podem validar check-in
-- [ ] Apenas admins podem cadastrar academias
+- Apenas admins podem validar check-in
+- Apenas admins podem cadastrar academias
 
 ---
 
@@ -63,7 +63,7 @@ Request HTTP → **Controller** → **Use Case** (regra) → **Repository** (abs
 - Senha precisa estar criptografada
 - Dados persistidos em PostgreSQL
 - Listagens devem ser paginadas com 20 itens/página
-- [ ] Usuário deve ser identificado por JWT
+- Usuário deve ser identificado por JWT
 
 ---
 
@@ -75,7 +75,6 @@ crie `.env` baseado no `.env.example` e aponte para seu banco PostgreSQL
 
 **2) instale dependências**
 
-```bash
 npm install
 
 **3) execute migrações**
@@ -86,30 +85,28 @@ npx prisma migrate dev
 
 npm run dev
 
-
 ## Testes
 
 npm run test
 
 # Passo-a-passo da lógica utilizada
 
-Controller recebe request (Fastify)
+- Controller recebe request (Fastify)
 
-Controller chama use-case
+- Controller chama use-case
 
-Use Case aplica regra de negócio (ex: verifica distância)
+- Use Case aplica regra de negócio (ex: verifica distância)
 
-Use Case chama repositório
+- Use Case chama repositório
 
-Repositório chama Prisma
+- Repositório chama Prisma
 
-Prisma executa SQL no PostgreSQL
+- Prisma executa SQL no PostgreSQL
 
-Retorna DTO padronizado ao cliente
+- Retorna DTO padronizado ao cliente
 
-Com isso o código fica limpo, isolado e fácil de manter.
+- Com isso o código fica limpo, isolado e fácil de manter.
 
-
-
+```bash
 
 ```
