@@ -60,9 +60,14 @@ npm run test
 
 
 Endpoints
-Método	Rota	O que faz
-POST	/transactions	cria uma nova transação
-GET	/transactions	lista todas transações do usuário
-GET	/transactions/:id	busca uma transação específica
-GET	/transactions/summary	retorna o saldo (entradas - saídas)
+Método	Rota
+
+
 ```
+
+| Método | Rota                    | O que faz                           |
+| ------ | ----------------------- | ----------------------------------- |
+| `POST` | `/transactions`         | cria uma nova transação             |
+| `GET`  | `/transactions`         | lista todas transações do usuário   |
+| `GET`  | `/transactions/:id`     | busca uma transação específica      |
+| `GET`  | `/transactions/summary` | retorna o saldo (entradas - saídas) |
