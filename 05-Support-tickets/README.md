@@ -1,43 +1,73 @@
-...existing code...
+# Support Tickets
+
+Aplicação simples em Node.js para gerenciar chamados (tickets). Fornece um servidor HTTP minimalista com roteamento próprio e persistência em arquivo JSON.
+
+## Tecnologias
+
+- Node.js (ES Modules)
+- fs/promises (persistência em JSON)
+- Arquitetura de controllers e middlewares
+
+## Estrutura do projeto (resumido)
+
+- src/
+  - server.js — inicializa o servidor
+  - middlewares/ — tratamento de JSON e roteamento
+  - routes/ — definição das rotas (tickets)
+  - controllers/ — lógica dos endpoints (create, index, update, updateStatus, remove)
+  - database/ — Database (classe leve que lê/escreve src/database/db.json)
+  - utils/ — utilitários (parseRoutePath, extractQueryParams)
+
+## Como executar (macOS)
+
+1. Instalar dependências (se houver):
+   - npm install
+2. Iniciar:
+   - node --experimental-modules src/server.js
+     (ou conforme script de package.json, se existir)
+
+## Endpoints principais
+
+- GET /tickets
+  - Lista tickets, suporta filtros via query string (busca por campos).
+- POST /tickets
+  - Cria um novo ticket (envie JSON no body).
+- PUT /tickets/:id
+  - Atualiza um ticket por id (envie campos a alterar).
+- PATCH /tickets/:id/status
+  - Atualiza somente status do ticket.
+- DELETE /tickets/:id
+  - Remove ticket por id.
+
+Observação: o servidor espera JSON no body; verifique as middlewares em src/middlewares.
+
+## Persistência
+
+Os dados são armazenados em src/database/db.json. A classe Database lê o arquivo na inicialização e escreve (persist) nas operações de insert/update/delete.
 
 ## Diagrama do fluxo principal
 
-Diagrama mermaid mostrando o fluxo principal da aplicação: requisição -> parsing JSON -> roteamento -> controllers -> operações na base de dados.
-
 ```mermaid
 flowchart LR
-  Client[Cliente] --> Server["server.js<br/>([server.js](http://_vscodecontentref_/0))"]
-  Server --> JsonHandler["jsonHandler<br/>([jsonHandler.js](http://_vscodecontentref_/1))"]
-  JsonHandler --> RouteHandler["routeHandler<br/>([routeHandler.js](http://_vscodecontentref_/2))"]
-  RouteHandler --> Routes["routes<br/>([index.js](http://_vscodecontentref_/3))"]
-  Routes --> ParsePath["parseRoutePath<br/>([parseRoutePath.js](http://_vscodecontentref_/4))"]
+  Client[Cliente] --> Server["server.js\n(src/server.js)"]
+  Server --> JsonHandler["jsonHandler\n(src/middlewares/jsonHandler.js)"]
+  JsonHandler --> RouteHandler["routeHandler\n(src/middlewares/routeHandler.js)"]
+  RouteHandler --> Routes["routes\n(src/routes/index.js)"]
+  Routes --> ParsePath["parseRoutePath\n(src/utils/parseRoutePath.js)"]
   RouteHandler --> Match{"Rota encontrada?"}
-  Match -- sim --> Controllers["Controller selecionado<br/>([tickets.js](http://_vscodecontentref_/5))"]
-  Controllers --> Create["create<br/>([create.js](http://_vscodecontentref_/6))"]
-  Controllers --> Index["index<br/>([index.js](http://_vscodecontentref_/7))"]
-  Controllers --> Update["update<br/>([update.js](http://_vscodecontentref_/8))"]
-  Controllers --> UpdateStatus["updateStatus<br/>([updateStatus.js](http://_vscodecontentref_/9))"]
-  Controllers --> Remove["remove<br/>([remove.js](http://_vscodecontentref_/10))"]
-  Controllers --> DatabaseClass["Database<br/>([database.js](http://_vscodecontentref_/11))"]
-  DatabaseClass --> DBFile["db.json<br/>([db.json](http://_vscodecontentref_/12))"]
+  Match -- sim --> Controller["Controller selecionado\n(src/routes/tickets.js)"]
+  Controller --> Create["create\n(src/controllers/tickets/create.js)"]
+  Controller --> Index["index\n(src/controllers/tickets/index.js)"]
+  Controller --> Update["update\n(src/controllers/tickets/update.js)"]
+  Controller --> UpdateStatus["updateStatus\n(src/controllers/tickets/updateStatus.js)"]
+  Controller --> Remove["remove\n(src/controllers/tickets/remove.js)"]
+  Controller --> DatabaseClass["Database\n(src/database/database.js)"]
+  DatabaseClass --> DBFile["db.json\n(src/database/db.json)"]
   Match -- não --> NotFound[Resposta 404]
-  Controllers --> Response[Resposta ao cliente]
+  Controller --> Response[Resposta ao cliente]
 
-
-Referências rápidas (abra estes arquivos/símbolos no workspace):
-
-- [server](http://_vscodecontentref_/13) — [server.js](http://_vscodecontentref_/14)
-- [jsonHandler](http://_vscodecontentref_/15) — [jsonHandler.js](http://_vscodecontentref_/16)
-- [routeHandler](http://_vscodecontentref_/17) — [routeHandler.js](http://_vscodecontentref_/18)
-- [routes](http://_vscodecontentref_/19) — [index.js](http://_vscodecontentref_/20)
-- [tickets.js](http://_vscodecontentref_/21)
-  - [create](http://_vscodecontentref_/22) — [create.js](http://_vscodecontentref_/23)
-  - [index](http://_vscodecontentref_/24) — [index.js](http://_vscodecontentref_/25)
-  - [update](http://_vscodecontentref_/26) — [update.js](http://_vscodecontentref_/27)
-  - [updateStatus](http://_vscodecontentref_/28) — [updateStatus.js](http://_vscodecontentref_/29)
-  - [remove](http://_vscodecontentref_/30) — [remove.js](http://_vscodecontentref_/31)
-- [Database](http://_vscodecontentref_/32) — [database.js](http://_vscodecontentref_/33)
-- [db.json](http://_vscodecontentref_/34)
-- [parseRoutePath](http://_vscodecontentref_/35) — [parseRoutePath.js](http://_vscodecontentref_/36)
-- [extractQueryParams](http://_vscodecontentref_/37)
+  Observações finais
+Projeto pensado para estudo; não é recomendado para produção sem melhorias (concorrência, validações, testes, etc).
+Para contribuições, abra issues ou PRs com descrições claras.
+Licença
 ```
