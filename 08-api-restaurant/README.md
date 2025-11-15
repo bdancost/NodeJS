@@ -100,3 +100,7 @@ Insomnia collection
 Contribuição
 
 - Abrir issue / pull request com melhorias ou correções.
+
+```
+
+```
