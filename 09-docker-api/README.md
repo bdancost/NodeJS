@@ -150,13 +150,3 @@ Contribuição
 
 - Fork → branch feature → PR com descrição clara
 - Siga convenções de commit e codestyle (Adicione linter/formatter se desejar)
-
-Licença
-
-- Adicione um arquivo LICENSE na raiz. (Escolha MIT, Apache-2.0, etc.)
-
-Contato / Suporte
-
-- Edite o código em src/ para rotas e lógica. Para dúvidas abra issue no repositório.
-
-Obrigado por usar este projeto — faça melhorias, adicione testes e integre CI para torná-lo
