@@ -1,112 +1,162 @@
-# API Exemplo (Docker)
+# 🚀 API Exemplo (Docker + Node.js + TypeScript)
 
-Pequena API Node.js em TypeScript preparada para rodar localmente e via Docker.
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=2b7a78&center=true&vCenter=true&width=700&lines=API+Exemplo+%E2%9C%8C+Docker+%7C+Node.js+%7C+PostgreSQL" alt="typing"/>
+</p>
 
-## Descrição
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-31648f?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
-Projeto de exemplo que expõe uma API na porta 3333 e usa PostgreSQL como banco de dados (container separado). Ideal para desenvolvimento local com hot-reload e para execução via Docker Compose.
+Descrição curta
 
-## Requisitos
+- Projeto exemplo de uma API em Node.js + TypeScript, preparada para execução local e via Docker Compose. Inclui um serviço PostgreSQL isolado por container.
 
-- Node.js (recomendado: versão compatível com a imagem Docker configurada)
-- npm ou yarn
-- Docker e Docker Compose (para execução em container)
+Índice
 
-## Instalação (local)
+- Visão geral
+- Rápido início
+- Executando com Docker Compose
+- Variáveis de ambiente / portas
+- Scripts úteis
+- Estrutura do projeto
+- Boas práticas / DEBUG
+- Contribuição / Licença
+
+Visão geral
+
+- Servidor HTTP: porta 3333 (padrão)
+- Banco: PostgreSQL no container (porta host mapeada para 5435)
+- Objetivo: ambiente replicável para desenvolvimento e testes com hot-reload local e containerização para produção.
+
+Rápido início — local
 
 1. Instale dependências:
 
-```sh
+```bash
 npm install
 ```
 
-## Execução em desenvolvimento (hot-reload)
+2. Rode em modo desenvolvimento (hot-reload):
 
-```sh
+```bash
 npm run dev
 ```
 
-Por padrão o servidor roda em `http://localhost:3333`.
+3. Abra: http://localhost:3333
 
-## Build e execução em produção (local)
+Executando com Docker (recomendado)
 
-1. Compilar TypeScript:
+1. Subir containers:
 
-```sh
-npm run build
-```
-
-2. Iniciar aplicação compilada:
-
-```sh
-npm start
-```
-
-## Com Docker (recomendado)
-
-Subir containers (api + postgres) com Docker Compose:
-
-```sh
+```bash
 docker compose up --build
 ```
 
-- API mapeada: host `3333` → container `3333`
-- PostgreSQL mapeado: host `5435` → container `5432`
+2. Para rodar em background:
 
-Credenciais definidas em `docker-compose.yml`:
-
-- POSTGRES_USER: `postgres`
-- POSTGRES_PASSWORD: `postgres`
-- POSTGRES_DB: `api`
-
-O volume `database` persiste os dados do PostgreSQL.
-
-Para rodar em segundo plano:
-
-```sh
+```bash
 docker compose up --build -d
 ```
 
-Parar e remover containers:
+3. Parar e remover:
 
-```sh
+```bash
 docker compose down
 ```
 
-## Teste rápido
+Configuração (docker-compose.yml)
 
-Exemplo de requisição:
+- Serviço api
+  - Porta: 3333 (host:container 3333:3333)
+  - Imagem construída a partir do Dockerfile
+- Serviço postgres (bitnami/postgresql)
+  - Porta do host: 5435 (host:container 5435:5432)
+  - Volume persistente: volume `database`
 
-```sh
-curl http://localhost:3333
-```
+Variáveis de ambiente (padrão no docker-compose.yml)
 
-(Substitua a rota conforme as rotas implementadas em `src/`.)
+- POSTGRES_USER=postgres
+- POSTGRES_PASSWORD=postgres
+- POSTGRES_DB=api
 
-## Scripts úteis (package.json)
+Ports summary
 
-- `dev` — modo desenvolvimento (hot-reload)
-- `build` — compilar TypeScript
-- `start` — iniciar aplicação compilada
+- API: http://localhost:3333
+- PostgreSQL (host): localhost:5435
 
-Verifique o `package.json` para os nomes exatos dos scripts.
+Scripts úteis (package.json)
 
-## Estrutura do projeto
+- npm run dev — desenvolvimento (hot-reload)
+- npm run build — compilar TypeScript para dist/
+- npm start — executar build compilado
+
+Estrutura do projeto
 
 - Dockerfile
 - docker-compose.yml
-- src/ — código fonte TypeScript
-- tsconfig.json
+- src/ — código TypeScript
+- dist/ — build (após npm run build)
 - package.json
+- tsconfig.json
 - .dockerignore / .gitignore
 - README.md
 
-## Observações
+Boas práticas e dicas
 
-- A saída do build TypeScript normalmente fica em `dist/` (ver `tsconfig.json`).
-- Se alterar dependências, reconstrua a imagem Docker (`docker compose build --no-cache` se necessário).
-- Dados do PostgreSQL persistem no volume `database` definido no `docker-compose.yml`.
+- Para alterar dependências que afetem a imagem Docker, reconstrua a imagem:
 
-## Contato / Suporte
+```bash
+docker compose build --no-cache
+```
 
-Edite os arquivos em `src/` para alterar rotas ou lógica. Para dúvidas, abra uma issue no repositório (se
+- Logs do container:
+
+```bash
+docker compose logs -f api
+```
+
+- Acesse o container:
+
+```bash
+docker compose exec api sh
+```
+
+- Acesse o Postgres (local) com psql:
+
+```bash
+psql -h localhost -p 5435 -U postgres -d api
+```
+
+Possíveis problemas e soluções rápidas
+
+- Erro de porta ocupada: verifique se 3333 (API) ou 5435 (Postgres host) já não estão em uso.
+- Permissões de volume no Mac: se houver problemas com volumes, reinicie o Docker Desktop e conceda permissões necessárias.
+- Erro de conexão DB: confirme credenciais e que o service postgres iniciou antes da API (docker compose garante dependência, mas a aplicação pode precisar de retry logic).
+
+Melhorando o README (ilustrações e animações)
+
+- O README já usa badges e um texto animado gerado (typing SVG).
+- Para imagens/ GIFs animados personalizados, adicione na raiz do repositório e referencie com:
+
+```markdown
+![exemplo-animacao](./assets/animation.gif)
+```
+
+- Use badges dinâmicos (shields.io) para CI, cobertura, Docker Hub, etc.
+
+Contribuição
+
+- Fork → branch feature → PR com descrição clara
+- Siga convenções de commit e codestyle (Adicione linter/formatter se desejar)
+
+Licença
+
+- Adicione um arquivo LICENSE na raiz. (Escolha MIT, Apache-2.0, etc.)
+
+Contato / Suporte
+
+- Edite o código em src/ para rotas e lógica. Para dúvidas abra issue no repositório.
+
+Obrigado por usar este projeto — faça melhorias, adicione testes e integre CI para torná-lo
