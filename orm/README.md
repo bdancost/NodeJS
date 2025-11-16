@@ -1,10 +1,10 @@
 # Fullstack ORM Template
 
-![Node.js](https://img.shields.io/badge/Node-%3E%3D16-brightgreen?logo=node.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue?logo=typescript&logoColor=white)
-![Express](https://img.shields.io/badge/Express-4.x-000000?logo=express&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-Client-6CC3FF?logo=prisma&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/Postgres-13+-316192?logo=postgresql&logoColor=white)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB)](#)
+[![Prisma](https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=white)](#)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-31648f?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
 Descrição
 Aplicação de exemplo profissional que demonstra uma API REST minimalista com TypeScript + Express e Prisma ORM conectada a PostgreSQL. Ideal como template para projetos que precisam de uma arquitetura clara e boas práticas ao interagir com a camada de dados.
