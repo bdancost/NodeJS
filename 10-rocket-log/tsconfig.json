@@ -8,6 +8,7 @@
     },
 
     "module": "Node16",
+    "types": ["jest"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
 
