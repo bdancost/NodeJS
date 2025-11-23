@@ -24,6 +24,13 @@ class DeliveriesStatusController {
       },
     })
 
+    await prisma.deliveryLog.create({
+      data: {
+        deliveryId: id,
+        description: status,
+      },
+    })
+
     return res.status(200).json()
   }
 }
