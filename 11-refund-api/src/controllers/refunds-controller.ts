@@ -32,6 +32,16 @@ class RefundsController {
 
     return res.status(201).json(refund)
   }
+
+  async index(req: Request, res: Response) {
+    const refunds = await prisma.refunds.findMany({
+      where: {
+        userID: req.user?.id,
+      },
+    })
+
+    return res.status(200).json(refunds)
+  }
 }
 
 export { RefundsController }
