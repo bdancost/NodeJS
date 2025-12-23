@@ -1,5 +1,6 @@
 import { app } from '@/app'
 import { env } from './env'
+import { clear } from 'console'
 
 const PORT = env.PORT
 

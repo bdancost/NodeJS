@@ -55,4 +55,6 @@ Dados armazenados em src/database/db.json. A classe Database lê o arquivo na in
 
 Projeto para estudo — não pronto para produção sem melhorias (concorrência, validações, segurança, testes). Contribuições são bem-vindas (issues/PRs).
 
-## Licença
+```
+
+```
