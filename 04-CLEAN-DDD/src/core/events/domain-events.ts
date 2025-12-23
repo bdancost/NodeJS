@@ -59,16 +59,16 @@ export class DomainEvents {
   }
 
   private static dispatch(event: DomainEvent) {
-    const eventClassName: string = event.constructor.name
+    const eventClassName = event.constructor.name
 
-    const isEventRegistered = eventClassName in this.handlersMap
+    const handlers = this.handlersMap[eventClassName]
 
-    if (isEventRegistered) {
-      const handlers = this.handlersMap[eventClassName]
+    if (!handlers) {
+      return
+    }
 
-      for (const handler of handlers) {
-        handler(event)
-      }
+    for (const handler of handlers) {
+      handler(event)
     }
   }
 }
