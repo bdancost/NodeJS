@@ -47,7 +47,7 @@ export class DomainEvents {
       this.handlersMap[eventClassName] = []
     }
 
-    //this.handlersMap[eventClassName].push(callback)
+    this.handlersMap[eventClassName].push(callback)
   }
 
   public static clearHandlers() {
