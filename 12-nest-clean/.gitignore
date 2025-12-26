@@ -1,12 +1,17 @@
+# Node
 node_modules/
 
-/generated/prisma
+# Prisma
+prisma/generated/
+
+# PostgreSQL (dados locais)
+data/
+.pgdata/
+postgres-data/
+
+# Build
+dist/
 
 # Env
 .env
-
-# IDE - VSCode
-.vscode/*
-
-# Docker
-data
+.env.*
