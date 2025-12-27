@@ -1,6 +1,12 @@
 /* eslint-disable no-useless-constructor */
 
-import { Controller, Post } from '@nestjs/common'
+import {
+  Body,
+  ConflictException,
+  Controller,
+  Post,
+  HttpCode,
+} from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 
 @Controller('/accounts')
@@ -8,10 +14,21 @@ export class CreateAccountController {
   constructor(private prisma: PrismaService) {}
 
   @Post()
-  async handle() {
-    const name = 'John Doe'
-    const email = 'M4Sb8@example.com'
-    const password = '123456'
+  @HttpCode(201)
+  async handle(@Body() body: any) {
+    const { name, email, password } = body
+
+    const userWithSameEmail = await this.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    })
+
+    if (userWithSameEmail) {
+      throw new ConflictException(
+        'User with same e-mail address already exists.',
+      )
+    }
 
     await this.prisma.user.create({
       data: {
