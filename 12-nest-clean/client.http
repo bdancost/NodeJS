@@ -12,10 +12,9 @@ Content-Type: application/json
 }
 
 ###
-
- # @name authenticate
+# @name authenticate
 POST {{baseUrl}}/sessions
-Content-Type: applications/json
+Content-Type: application/json
 
 {
   "email": "diego@gmail.com",
@@ -27,4 +26,7 @@ Content-Type: applications/json
 
 POST {{baseUrl}}/questions
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
 
