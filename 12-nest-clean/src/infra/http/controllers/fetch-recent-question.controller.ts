@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-constructor */
 
-import { JwtAuthGuard } from '@/auth/jwt-auth.guard'
+import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard'
 import { Controller, Get, UseGuards, Query } from '@nestjs/common'
-import { ZodValidationPipe } from '@/pipes/zod-validation-pipe'
-import { PrismaService } from '@/prisma/prisma.service'
+import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
+import { PrismaService } from '@/infra/prisma/prisma.service'
 import { z } from 'zod'
 
 const pageQueryParamSchema = z
