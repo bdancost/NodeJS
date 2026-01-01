@@ -1,12 +1,14 @@
 /* eslint-disable no-useless-constructor */
 
-import type { QuestionsRepository } from '../repositories/questions-repository.js'
-import { Question } from '../../enterprise/entities/question.js'
-import { UniqueEntityID } from '@/core/entities/unique-entity-id.js'
-import { right } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
-import { QuestionAttachment } from '../../enterprise/entities/question-attachment.js'
-import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list.js'
+import { QuestionsRepository as QuestionsRepositoryToken } from '../repositories/questions-repository'
+import type { QuestionsRepository } from '../repositories/questions-repository'
+import { Question } from '../../enterprise/entities/question'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { right } from '@/core/either'
+import type { Either } from '@/core/either'
+import { QuestionAttachment } from '../../enterprise/entities/question-attachment'
+import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list'
+import { Injectable, Inject } from '@nestjs/common'
 
 interface CreateQuestionUseCaseRequest {
   authorId: string
@@ -22,8 +24,13 @@ type CreateQuestionUseCaseResponse = Either<
   }
 >
 
+@Injectable()
 export class CreateQuestionUseCase {
-  constructor(private questionsRepository: QuestionsRepository) {}
+  constructor(
+    @Inject(QuestionsRepositoryToken)
+    private readonly questionsRepository: QuestionsRepository,
+  ) {}
+
   async execute({
     authorId,
     title,

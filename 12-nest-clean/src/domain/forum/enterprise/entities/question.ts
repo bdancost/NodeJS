@@ -1,10 +1,10 @@
-import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug.js'
-import { UniqueEntityID } from '@/core/entities/unique-entity-id.js'
-import type { Optional } from '@/core/types/optional.js'
+import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import type { Optional } from '@/core/types/optional'
 import dayjs from 'dayjs'
-import { AggregateRoot } from '@/core/entities/aggregate-root.js'
-import { QuestionAttachmentList } from '@/domain/forum/enterprise/entities/question-attachment-list.js'
-import { QuestionBestAnswerChosenEvent } from '../events/question-best-answer-chosen-event.js'
+import { AggregateRoot } from '@/core/entities/aggregate-root'
+import { QuestionAttachmentList } from '@/domain/forum/enterprise/entities/question-attachment-list'
+import { QuestionBestAnswerChosenEvent } from '../events/question-best-answer-chosen-event'
 
 export interface QuestionProps {
   authorId: UniqueEntityID
