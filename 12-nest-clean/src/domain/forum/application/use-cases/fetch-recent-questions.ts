@@ -1,9 +1,11 @@
 /* eslint-disable no-useless-constructor */
 
-import type { QuestionsRepository } from '../repositories/questions-repository.js'
-import { Question } from '../../enterprise/entities/question.js'
-import { right } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
+import { QuestionsRepository } from '../repositories/questions-repository'
+import type { QuestionsRepository as QuestionsRepositoryType } from '../repositories/questions-repository'
+import { Question } from '../../enterprise/entities/question'
+import { right } from '@/core/either'
+import type { Either } from '@/core/either'
+import { Injectable, Inject } from '@nestjs/common'
 
 interface FetchRecentQuestionUseCaseRequest {
   page: number
@@ -16,8 +18,13 @@ type FetchRecentQuestionUseCaseResponse = Either<
   }
 >
 
+@Injectable()
 export class FetchRecentQuestionUseCase {
-  constructor(private questionsRepository: QuestionsRepository) {}
+  constructor(
+    @Inject(QuestionsRepository)
+    private readonly questionsRepository: QuestionsRepositoryType,
+  ) {}
+
   async execute({
     page,
   }: FetchRecentQuestionUseCaseRequest): Promise<FetchRecentQuestionUseCaseResponse> {
