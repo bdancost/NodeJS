@@ -1,18 +1,12 @@
 /* eslint-disable no-useless-constructor */
 
-import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard'
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Post,
-  UseGuards,
-} from '@nestjs/common'
+import { BadRequestException, Body, Controller, Post } from '@nestjs/common'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { UserPayload } from '@/infra/auth/jwt.strategy'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/create-question'
+import { Public } from '@/infra/auth/public'
 
 const createQuestionBodySchema = z.object({
   title: z.string(),
@@ -24,7 +18,7 @@ const bodyValidationPipe = new ZodValidationPipe(createQuestionBodySchema)
 type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>
 
 @Controller('/questions')
-@UseGuards(JwtAuthGuard)
+@Public()
 export class CreateQuestionController {
   constructor(private createQuestion: CreateQuestionUseCase) {}
 

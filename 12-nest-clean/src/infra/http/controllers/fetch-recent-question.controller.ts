@@ -1,13 +1,6 @@
 /* eslint-disable no-useless-constructor */
 
-import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard'
-import {
-  Controller,
-  Get,
-  UseGuards,
-  Query,
-  BadRequestException,
-} from '@nestjs/common'
+import { Controller, Get, Query, BadRequestException } from '@nestjs/common'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
 import { FetchRecentQuestionUseCase } from '@/domain/forum/application/use-cases/fetch-recent-questions'
@@ -25,7 +18,6 @@ type PageQueryParamSchema = z.infer<typeof pageQueryParamSchema>
 const queryValidationPipe = new ZodValidationPipe(pageQueryParamSchema)
 
 @Controller('/questions')
-@UseGuards(JwtAuthGuard)
 export class FetchRecentQuestionController {
   constructor(private fetchRecentQuestions: FetchRecentQuestionUseCase) {}
 
