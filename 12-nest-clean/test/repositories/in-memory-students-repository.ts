@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-constructor */
 
-import { Student } from '@/domain/forum/enterprise/entities/student.js'
-import { DomainEvents } from '@/core/events/domain-events.js'
+import { Student } from '@/domain/forum/enterprise/entities/student'
+import { DomainEvents } from '@/core/events/domain-events'
 import { StudentsRepository } from '@/domain/forum/application/repositories/students-repository'
 
 export class InMemoryStudentsRepository implements StudentsRepository {

@@ -1,11 +1,11 @@
 /* eslint-disable no-useless-constructor */
 
-import { right, left } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
-import { Notification } from '../../enterprise/entities/notification.js'
-import type { NotificationsRepository } from '../repositories/notifications-repository.js'
-import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error.js'
-import { NotAllowedError } from '@/core/errors/errors/not-allowed-error.js'
+import { right, left } from '@/core/either'
+import type { Either } from '@/core/either'
+import { Notification } from '@/domain/notification/enterprise/entities/notification'
+import type { NotificationsRepository } from '@/domain/notification/application/repositories/notifications-repository'
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
+import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 
 interface ReadNotificationUseCaseRequest {
   recipientId: string

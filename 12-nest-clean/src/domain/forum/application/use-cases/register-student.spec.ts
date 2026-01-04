@@ -1,6 +1,6 @@
-import { RegisterStudentUseCase } from './register-student.js'
-import { FakeHasher } from 'test/cryptography/fake-hasher.js'
-import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository.js'
+import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/register-student'
+import { FakeHasher } from 'test/cryptography/fake-hasher'
+import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository'
 
 let inMemoryStudentsRepository: InMemoryStudentsRepository
 let fakeHasher: FakeHasher

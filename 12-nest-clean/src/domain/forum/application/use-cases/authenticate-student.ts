@@ -1,9 +1,5 @@
-/* eslint-disable no-useless-constructor */
-
-import { QuestionsRepository as QuestionsRepositoryToken } from '../repositories/questions-repository'
-import { left, right } from '@/core/either'
-import type { Either } from '@/core/either'
-import { Injectable, Inject } from '@nestjs/common'
+import { Either, left, right } from '@/core/either'
+import { Injectable } from '@nestjs/common'
 import { StudentsRepository } from '../repositories/students-repository'
 import { HashComparer } from '../cryptography/hash-comparer'
 import { Encrypter } from '../cryptography/encrypter'
@@ -24,8 +20,7 @@ type AuthenticateStudentUseCaseResponse = Either<
 @Injectable()
 export class AuthenticateStudentUseCase {
   constructor(
-    @Inject(QuestionsRepositoryToken)
-    private readonly studentsRepository: StudentsRepository,
+    private studentsRepository: StudentsRepository,
     private hashComparer: HashComparer,
     private encrypter: Encrypter,
   ) {}

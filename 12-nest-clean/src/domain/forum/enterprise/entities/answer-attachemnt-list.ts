@@ -1,5 +1,5 @@
-import { WatchedList } from '@/core/entities/watched-list.js'
-import { AnswerAttachment } from './answer-attachment.js'
+import { WatchedList } from '@/core/entities/watched-list'
+import { AnswerAttachment } from './answer-attachment'
 
 export class AnswerAttachmentList extends WatchedList<AnswerAttachment> {
   compareItems(a: AnswerAttachment, b: AnswerAttachment): boolean {

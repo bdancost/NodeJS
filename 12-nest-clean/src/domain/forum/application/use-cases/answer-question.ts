@@ -1,12 +1,12 @@
 /* eslint-disable no-useless-constructor */
 
-import { UniqueEntityID } from '@/core/entities/unique-entity-id.js'
-import { Answer } from '@/domain/forum/enterprise/entities/answer.js'
-import type { AnswersRepository } from '../repositories/answers-repository.js'
-import { right } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
-import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-attachment.js'
-import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachemnt-list.js'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Answer } from '@/domain/forum/enterprise/entities/answer'
+import type { AnswersRepository } from '../repositories/answers-repository'
+import { right } from '@/core/either'
+import type { Either } from '@/core/either'
+import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-attachment'
+import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachemnt-list'
 
 interface AnswerQuestionUseCaseRequest {
   instructorId: string
