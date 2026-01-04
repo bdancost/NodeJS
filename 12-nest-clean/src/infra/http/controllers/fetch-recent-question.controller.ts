@@ -1,7 +1,13 @@
 /* eslint-disable no-useless-constructor */
 
 import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard'
-import { Controller, Get, UseGuards, Query } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  UseGuards,
+  Query,
+  BadRequestException,
+} from '@nestjs/common'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
 import { FetchRecentQuestionUseCase } from '@/domain/forum/application/use-cases/fetch-recent-questions'
@@ -30,7 +36,7 @@ export class FetchRecentQuestionController {
     })
 
     if (result.isLeft()) {
-      throw new Error()
+      throw new BadRequestException()
     }
 
     const questions = result.value.questions
