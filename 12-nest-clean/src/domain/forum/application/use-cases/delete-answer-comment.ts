@@ -30,7 +30,7 @@ export class DeleteAnswerCommentUseCase {
       return left(new ResourceNotFoundError())
     }
 
-    if (answerComment.authorID.toString() !== authorId) {
+    if (answerComment.authorId.toString() !== authorId) {
       return left(new NotAllowedError())
     }
     await this.answerCommentsRepository.delete(answerComment)

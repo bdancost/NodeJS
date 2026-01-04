@@ -1,10 +1,4 @@
-/*
-  Warnings:
 
-  - You are about to drop the column `update_at` on the `questions` table. All the data in the column will be lost.
-  - A unique constraint covering the columns `[best_answer_id]` on the table `questions` will be added. If there are existing duplicate values, this will fail.
-
-*/
 -- CreateEnum
 CREATE TYPE "UserRole" AS ENUM ('STUDENT', 'INSTRUCTOR');
 

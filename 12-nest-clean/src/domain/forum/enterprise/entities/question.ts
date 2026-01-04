@@ -17,7 +17,7 @@ export interface QuestionProps {
   updatedAt?: Date | null
 }
 export class Question extends AggregateRoot<QuestionProps> {
-  get authorID() {
+  get authorId() {
     return this.props.authorId
   }
 

@@ -43,7 +43,7 @@ export class EditAnswerUseCase {
       return left(new ResourceNotFoundError())
     }
 
-    if (authorId !== answer.authorID.toString()) {
+    if (authorId !== answer.authorId.toString()) {
       return left(new NotAllowedError())
     }
 
