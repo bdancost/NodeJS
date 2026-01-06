@@ -41,15 +41,19 @@ export class PrismaQuestionCommentsRepository implements QuestionCommentsReposit
     return questionComments.map(PrismaQuestionCommentMapper.toDomain)
   }
 
-  ): Promise<QuestionComment[]> {
-    throw new Error('Method not implemented.')
+  async create(questionComment: QuestionComment): Promise<void> {
+    const data = PrismaQuestionCommentMapper.toPrisma(questionComment)
+
+    await this.prisma.comment.create({
+      data,
+    })
   }
 
-  create(questionComment: QuestionComment): Promise<void> {
-    throw new Error('Method not implemented.')
-  }
-
-  delete(questionComment: QuestionComment): Promise<void> {
-    throw new Error('Method not implemented.')
+  async delete(questionComment: QuestionComment): Promise<void> {
+    await this.prisma.comment.delete({
+      where: {
+        id: questionComment.id.toString(),
+      },
+    })
   }
 }
