@@ -1,8 +1,8 @@
 import {
   QuestionAttachment,
   type QuestionAttachmentProps,
-} from '../../src/domain/forum/enterprise/entities/question-attachment.js'
-import { UniqueEntityID } from '../../src/core/entities/unique-entity-id.js'
+} from '@/domain/forum/enterprise/entities/question-attachment'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 export function makeQuestionAttachment(
   override: Partial<QuestionAttachmentProps> = {},
   id?: UniqueEntityID,

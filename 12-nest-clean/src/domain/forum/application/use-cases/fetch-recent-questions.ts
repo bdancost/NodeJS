@@ -3,8 +3,7 @@
 import { QuestionsRepository } from '../repositories/questions-repository'
 import type { QuestionsRepository as QuestionsRepositoryType } from '../repositories/questions-repository'
 import { Question } from '../../enterprise/entities/question'
-import { right } from '@/core/either'
-import type { Either } from '@/core/either'
+import { right, Either } from '@/core/either'
 import { Injectable, Inject } from '@nestjs/common'
 
 interface FetchRecentQuestionUseCaseRequest {

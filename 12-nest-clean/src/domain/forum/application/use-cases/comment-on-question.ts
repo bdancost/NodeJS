@@ -1,12 +1,11 @@
 /* eslint-disable no-useless-constructor */
 
-import type { QuestionsRepository } from '../repositories/questions-repository.js'
-import { QuestionComment } from '../../enterprise/entities/question-comment.js'
-import type { QuestionCommentsRepository } from '../repositories/question-comments-repository.js'
-import { UniqueEntityID } from '@/core/entities/unique-entity-id.js'
-import { ResourceNotFoundError } from '../../../../core/errors/errors/resource-not-found-error.js'
-import type { Either } from '@/core/either.js'
-import { left, right } from '@/core/either.js'
+import { QuestionsRepository } from '../repositories/questions-repository'
+import { QuestionComment } from '../../enterprise/entities/question-comment'
+import { QuestionCommentsRepository } from '../repositories/question-comments-repository'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
+import { left, right, Either } from '@/core/either'
 
 interface CommentOnQuestionUseCaseRequest {
   authorId: string

@@ -3,8 +3,7 @@
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Answer } from '@/domain/forum/enterprise/entities/answer'
 import type { AnswersRepository } from '../repositories/answers-repository'
-import { right } from '@/core/either'
-import type { Either } from '@/core/either'
+import { right, Either } from '@/core/either'
 import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-attachment'
 import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachemnt-list'
 

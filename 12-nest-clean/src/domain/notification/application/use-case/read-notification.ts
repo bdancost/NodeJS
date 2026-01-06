@@ -1,9 +1,8 @@
 /* eslint-disable no-useless-constructor */
 
-import { right, left } from '@/core/either'
-import type { Either } from '@/core/either'
+import { right, left, Either } from '@/core/either'
 import { Notification } from '@/domain/notification/enterprise/entities/notification'
-import type { NotificationsRepository } from '@/domain/notification/application/repositories/notifications-repository'
+import { NotificationsRepository } from '@/domain/notification/application/repositories/notifications-repository'
 import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
 import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 

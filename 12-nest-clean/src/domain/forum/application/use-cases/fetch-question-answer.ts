@@ -1,9 +1,8 @@
 /* eslint-disable no-useless-constructor */
 
-import type { AnswersRepository } from '../repositories/answers-repository.js'
-import { Answer } from '../../enterprise/entities/answer.js'
-import { right } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
+import { AnswersRepository } from '../repositories/answers-repository'
+import { Answer } from '../../enterprise/entities/answer'
+import { right, Either } from '@/core/either'
 
 interface FetchQuestionAnswersUseCaseRequest {
   questionId: string

@@ -1,9 +1,8 @@
 /* eslint-disable no-useless-constructor */
 
-import { QuestionComment } from '../../enterprise/entities/question-comment.js'
-import type { QuestionCommentsRepository } from '../repositories/question-comments-repository.js'
-import { right } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
+import { QuestionComment } from '../../enterprise/entities/question-comment'
+import { QuestionCommentsRepository } from '../repositories/question-comments-repository'
+import { right, Either } from '@/core/either'
 
 interface FetchQuestionCommentsRequest {
   questionId: string

@@ -1,10 +1,9 @@
 /* eslint-disable no-useless-constructor */
 
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { right } from '@/core/either.js'
-import type { Either } from '@/core/either'
+import { right, Either } from '@/core/either'
 import { Notification } from '@/domain/notification/enterprise/entities/notification'
-import type { NotificationsRepository } from '@/domain/notification/application/repositories/notifications-repository'
+import { NotificationsRepository } from '@/domain/notification/application/repositories/notifications-repository'
 
 export interface SendNotificationUseCaseRequest {
   recipientId: string

@@ -1,12 +1,11 @@
 /* eslint-disable no-useless-constructor */
 
-import { Question } from '@/domain/forum/enterprise/entities/question.js'
-import type { AnswersRepository } from '../repositories/answers-repository.js'
-import type { QuestionsRepository } from '../repositories/questions-repository.js'
-import { right, left } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
-import { ResourceNotFoundError } from '../../../../core/errors/errors/resource-not-found-error.js'
-import { NotAllowedError } from '../../../../core/errors/errors/not-allowed-error.js'
+import { Question } from '@/domain/forum/enterprise/entities/question'
+import { AnswersRepository } from '../repositories/answers-repository'
+import { QuestionsRepository } from '../repositories/questions-repository'
+import { right, left, Either } from '@/core/either'
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
+import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 
 interface ChooseQuestionBestAnswerUseCaseRequest {
   authorId: string

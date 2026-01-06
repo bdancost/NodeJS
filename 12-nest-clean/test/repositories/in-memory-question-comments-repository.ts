@@ -1,6 +1,6 @@
-import type { QuestionCommentsRepository } from '@/domain/forum/application/repositories/question-comments-repository.js'
-import { QuestionComment } from '@/domain/forum/enterprise/entities/question-comment.js'
-import type { PaginationParams } from '@/core/repositories/pagination-params.js'
+import { QuestionCommentsRepository } from '@/domain/forum/application/repositories/question-comments-repository'
+import { QuestionComment } from '@/domain/forum/enterprise/entities/question-comment'
+import { PaginationParams } from '@/core/repositories/pagination-params'
 
 export class InMemoryQuestionCommentsRepository implements QuestionCommentsRepository {
   public items: QuestionComment[] = []

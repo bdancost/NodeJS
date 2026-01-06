@@ -1,15 +1,14 @@
 /* eslint-disable no-useless-constructor */
 
-import { Question } from '../../enterprise/entities/question.js'
-import type { QuestionsRepository } from '../repositories/questions-repository.js'
-import { ResourceNotFoundError } from '../../../../core/errors/errors/resource-not-found-error.js'
-import { NotAllowedError } from '../../../../core/errors/errors/not-allowed-error.js'
-import { left, right } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
-import type { QuestionAttachmentsRepository } from '../repositories/question-attachments-repository.js'
-import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list.js'
-import { QuestionAttachment } from '../../enterprise/entities/question-attachment.js'
-import { UniqueEntityID } from '@/core/entities/unique-entity-id.js'
+import { Question } from '../../enterprise/entities/question'
+import { QuestionsRepository } from '../repositories/questions-repository'
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
+import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
+import { left, right, Either } from '@/core/either'
+import { QuestionAttachmentsRepository } from '../repositories/question-attachments-repository.js'
+import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list'
+import { QuestionAttachment } from '../../enterprise/entities/question-attachment'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 interface EditQuestionUseCaseRequest {
   authorId: string

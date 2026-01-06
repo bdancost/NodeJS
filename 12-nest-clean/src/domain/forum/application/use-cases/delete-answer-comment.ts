@@ -1,10 +1,9 @@
 /* eslint-disable no-useless-constructor */
 
-import { left, right } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
-import type { AnswerCommentsRepository } from '../repositories/answer-comments-repository.js'
-import { ResourceNotFoundError } from '../../../../core/errors/errors/resource-not-found-error.js'
-import { NotAllowedError } from '../../../../core/errors/errors/not-allowed-error.js'
+import { left, right, Either } from '@/core/either'
+import { AnswerCommentsRepository } from '../repositories/answer-comments-repository'
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
+import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 
 interface DeleteAnswerCommentUseCaseRequest {
   authorId: string

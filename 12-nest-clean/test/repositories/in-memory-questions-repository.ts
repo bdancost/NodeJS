@@ -1,10 +1,10 @@
 /* eslint-disable no-useless-constructor */
 
-import type { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository.js'
-import { Question } from '@/domain/forum/enterprise/entities/question.js'
-import type { PaginationParams } from '@/core/repositories/pagination-params.js'
-import type { QuestionAttachmentsRepository } from '@/domain/forum/application/repositories/question-attachments-repository.js'
-import { DomainEvents } from '@/core/events/domain-events.js'
+import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
+import { Question } from '@/domain/forum/enterprise/entities/question'
+import { PaginationParams } from '@/core/repositories/pagination-params'
+import { QuestionAttachmentsRepository } from '@/domain/forum/application/repositories/question-attachments-repository'
+import { DomainEvents } from '@/core/events/domain-events'
 
 export class InMemoryQuestionsRepository implements QuestionsRepository {
   public items: Question[] = []

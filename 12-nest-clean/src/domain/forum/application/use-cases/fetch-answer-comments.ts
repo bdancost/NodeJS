@@ -1,9 +1,8 @@
 /* eslint-disable no-useless-constructor */
 
-import { AnswerComment } from '../../enterprise/entities/answer-comment.js'
-import type { AnswerCommentsRepository } from '../repositories/answer-comments-repository.js'
-import { right } from '@/core/either.js'
-import type { Either } from '@/core/either.js'
+import { AnswerComment } from '../../enterprise/entities/answer-comment'
+import { AnswerCommentsRepository } from '../repositories/answer-comments-repository'
+import { right, Either } from '@/core/either'
 
 interface FetchAnswerCommentsRequest {
   answerId: string
