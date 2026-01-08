@@ -32,7 +32,7 @@ describe('Comment on question', () => {
 
     await sut.execute({
       questionId: question.id.toString(),
-      authorId: question.authorID.toString(),
+      authorId: question.authorId.toString(),
       content: 'This is a comment on question',
     })
 

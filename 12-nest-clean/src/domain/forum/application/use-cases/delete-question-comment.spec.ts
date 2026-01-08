@@ -22,7 +22,7 @@ describe('Delete Question Comment', () => {
 
     await sut.execute({
       questionCommentId: questionComment.id.toString(),
-      authorId: questionComment.authorID.toString(),
+      authorId: questionComment.authorId.toString(),
     })
 
     expect(inMemoryQuestionCommentsRepository!.items).toHaveLength(0)

@@ -1,16 +1,13 @@
-/* eslint-disable no-useless-constructor */
-
+import { Question } from '@/domain/forum/enterprise/entities/question'
 import { QuestionsRepository } from '../repositories/questions-repository'
-import type { QuestionsRepository as QuestionsRepositoryType } from '../repositories/questions-repository'
-import { Question } from '../../enterprise/entities/question'
-import { right, Either } from '@/core/either'
-import { Injectable, Inject } from '@nestjs/common'
+import { Either, right } from '@/core/either'
+import { Injectable } from '@nestjs/common'
 
-interface FetchRecentQuestionUseCaseRequest {
+interface FetchRecentQuestionsUseCaseRequest {
   page: number
 }
 
-type FetchRecentQuestionUseCaseResponse = Either<
+type FetchRecentQuestionsUseCaseResponse = Either<
   null,
   {
     questions: Question[]
@@ -18,15 +15,12 @@ type FetchRecentQuestionUseCaseResponse = Either<
 >
 
 @Injectable()
-export class FetchRecentQuestionUseCase {
-  constructor(
-    @Inject(QuestionsRepository)
-    private readonly questionsRepository: QuestionsRepositoryType,
-  ) {}
+export class FetchRecentQuestionsUseCase {
+  constructor(private questionsRepository: QuestionsRepository) {}
 
   async execute({
     page,
-  }: FetchRecentQuestionUseCaseRequest): Promise<FetchRecentQuestionUseCaseResponse> {
+  }: FetchRecentQuestionsUseCaseRequest): Promise<FetchRecentQuestionsUseCaseResponse> {
     const questions = await this.questionsRepository.findManyRecent({ page })
 
     return right({
