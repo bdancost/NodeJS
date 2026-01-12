@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-constructor */
 
+import { Injectable } from '@nestjs/common'
 import { QuestionComment } from '../../enterprise/entities/question-comment'
 import { QuestionCommentsRepository } from '../repositories/question-comments-repository'
 import { right, Either } from '@/core/either'
@@ -16,6 +17,7 @@ type FetchQuestionCommentsResponse = Either<
   }
 >
 
+@Injectable()
 export class FetchQuestionCommentsUseCase {
   constructor(private questionCommentsRepository: QuestionCommentsRepository) {}
   async execute({
