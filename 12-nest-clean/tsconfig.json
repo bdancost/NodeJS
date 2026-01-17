@@ -23,6 +23,6 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
   },
-  "types": ["vitest/globals", "node", "vite/client"],
+  "types": ["vitest/globals", "node", "vite/client", "multer"],
   "include": ["src", "**/*.ts", "vitest-env.d.ts"]
 }

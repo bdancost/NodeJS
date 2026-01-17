@@ -21,7 +21,7 @@
     "test:e2e:watch": "vitest --config ./vitest.config.e2e.ts"
   },
   "dependencies": {
-    "@nestjs/common": "^11.0.1",
+    "@nestjs/common": "^11.1.12",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/jwt": "^11.0.2",
@@ -47,6 +47,7 @@
     "@rocketseat/eslint-config": "^2.2.2",
     "@swc/core": "^1.15.7",
     "@types/express": "^5.0.0",
+    "@types/multer": "^2.0.0",
     "@types/node": "^22.19.3",
     "@types/passport-jwt": "^4.0.1",
     "@types/pg": "^8.16.0",
