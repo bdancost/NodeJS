@@ -41,6 +41,7 @@ describe('Create question (E2E)', () => {
       .send({
         title: 'New question',
         content: 'New question content',
+        attachments: [],
       })
 
     expect(response.statusCode).toBe(201)
