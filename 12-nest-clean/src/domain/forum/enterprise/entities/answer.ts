@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
-import { AnswerAttachmentList } from '@/domain/forum/enterprise/entities/answer-attachemnt-list'
+import { AnswerAttachmentList } from '@/domain/forum/enterprise/entities/answer-attachment-list'
 import { AggregateRoot } from '@/core/entities/aggregate-root'
 import { AnswerCreatedEvent } from '@/domain/forum/enterprise/events/answer-created-events'
 

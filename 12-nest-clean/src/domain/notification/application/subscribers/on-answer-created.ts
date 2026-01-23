@@ -1,7 +1,7 @@
 import { DomainEvents } from '@/core/events/domain-events'
 import { EventHandler } from '@/core/events/event-handler'
-import { AnswerCreatedEvent } from '../../../forum/enterprise/events/answer-created-events'
-import { QuestionsRepository } from '../../../forum/application/repositories/questions-repository'
+import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
+import { AnswerCreatedEvent } from '@/domain/forum/enterprise/events/answer-created-events'
 import { SendNotificationUseCase } from '@/domain/notification/application/use-case/send-notification'
 import { Injectable } from '@nestjs/common'
 
@@ -9,28 +9,30 @@ import { Injectable } from '@nestjs/common'
 export class OnAnswerCreated implements EventHandler {
   constructor(
     private questionsRepository: QuestionsRepository,
-    private sendNotifications: SendNotificationUseCase,
+    private sendNotification: SendNotificationUseCase,
   ) {
     this.setupSubscriptions()
   }
 
   setupSubscriptions(): void {
     DomainEvents.register(
-      this.sendNewAnswerNotifications.bind(this),
+      this.sendNewAnswerNotification.bind(this),
       AnswerCreatedEvent.name,
     )
   }
 
-  private async sendNewAnswerNotifications({ answer }: AnswerCreatedEvent) {
+  private async sendNewAnswerNotification({ answer }: AnswerCreatedEvent) {
     const question = await this.questionsRepository.findById(
       answer.questionId.toString(),
     )
 
     if (question) {
-      await this.sendNotifications.execute({
+      await this.sendNotification.execute({
         recipientId: question.authorId.toString(),
-        title: `Nova resposta em "${question.title.substring(0, 40).concat('...')}"`,
-        content: answer.excerpt.toString(),
+        title: `Nova resposta em "${question.title
+          .substring(0, 40)
+          .concat('...')}"`,
+        content: answer.excerpt,
       })
     }
   }

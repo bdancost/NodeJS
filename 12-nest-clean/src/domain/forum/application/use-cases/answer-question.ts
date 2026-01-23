@@ -1,12 +1,11 @@
-/* eslint-disable no-useless-constructor */
-
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { Answer } from '@/domain/forum/enterprise/entities/answer'
+import { Answer } from '../../enterprise/entities/answer'
 import { AnswersRepository } from '../repositories/answers-repository'
-import { right, Either } from '@/core/either'
-import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-attachment'
-import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachemnt-list'
+import { Either, right } from '@/core/either'
+import { AnswerAttachment } from '../../enterprise/entities/answer-attachment'
+import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachment-list'
 import { Injectable } from '@nestjs/common'
+import { DomainEvents } from '@/core/events/domain-events'
 
 interface AnswerQuestionUseCaseRequest {
   authorId: string
@@ -15,11 +14,17 @@ interface AnswerQuestionUseCaseRequest {
   content: string
 }
 
-type AnswerQuestionUseCaseResponse = Either<null, { answer: Answer }>
+type AnswerQuestionUseCaseResponse = Either<
+  null,
+  {
+    answer: Answer
+  }
+>
 
 @Injectable()
 export class AnswerQuestionUseCase {
   constructor(private answersRepository: AnswersRepository) {}
+
   async execute({
     authorId,
     questionId,
@@ -41,7 +46,9 @@ export class AnswerQuestionUseCase {
 
     answer.attachments = new AnswerAttachmentList(answerAttachments)
 
-    await this.answersRepository?.create(answer)
+    await this.answersRepository.create(answer)
+
+    DomainEvents.dispatchEventsForAggregate(answer.id)
 
     return right({
       answer,

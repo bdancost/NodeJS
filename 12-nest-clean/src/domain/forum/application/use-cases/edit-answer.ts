@@ -7,7 +7,7 @@ import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 import { left, right, Either } from '@/core/either'
 import { AnswerAttachmentsRepository } from '../repositories/answer-attachments-repository'
 import { AnswerAttachment } from '../../enterprise/entities/answer-attachment'
-import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachemnt-list'
+import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachment-list'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Injectable } from '@nestjs/common'
 
