@@ -12,7 +12,7 @@ import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questio
 import type { MockInstance } from 'vitest'
 import { waitFor } from 'test/utils/wait-for'
 import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository'
-import { OnQuestionBestAnswerChosen } from './on-question.best-answer-chosen'
+import { OnQuestionBestAnswerChosen } from './on-question-best-answer-chosen'
 import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository'
 import { InMemoryAttachmentsRepository } from 'test/repositories/in-memory-attachments-repository'
 
