@@ -1,28 +1,37 @@
-import 'dotenv/config'
-import { execSync } from 'node:child_process'
-import { randomUUID } from 'crypto'
-import { PrismaClient } from '@prisma/client'
+import { config } from 'dotenv'
 
-let prisma: PrismaClient
+import { PrismaClient } from '@prisma/client'
+import { randomUUID } from 'node:crypto'
+import { execSync } from 'node:child_process'
+import { DomainEvents } from '@/core/events/domain-events'
+
+config({ path: '.env', override: true })
+config({ path: '.env.test', override: true })
+
+const prisma = new PrismaClient()
 
 function generateUniqueDatabaseURL(schemaId: string) {
   if (!process.env.DATABASE_URL) {
-    throw new Error('DATABASE_URL not found')
+    throw new Error('Please provider a DATABASE_URL environment variable')
   }
 
   const url = new URL(process.env.DATABASE_URL)
+
   url.searchParams.set('schema', schemaId)
+
   return url.toString()
 }
 
 const schemaId = randomUUID()
 
 beforeAll(async () => {
-  process.env.DATABASE_URL = generateUniqueDatabaseURL(schemaId)
+  const databaseURL = generateUniqueDatabaseURL(schemaId)
+
+  process.env.DATABASE_URL = databaseURL
+
+  DomainEvents.shouldRun = false
 
   execSync('npx prisma migrate dev --skip-generate', { stdio: 'inherit' })
-
-  prisma = new PrismaClient()
 })
 
 afterAll(async () => {
