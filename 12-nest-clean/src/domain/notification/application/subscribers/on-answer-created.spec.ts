@@ -6,7 +6,7 @@ import {
   SendNotificationUseCase,
   type SendNotificationUseCaseRequest,
   type SendNotificationUseCaseResponse,
-} from '@/domain/notification/application/use-case/send-notification'
+} from '@/domain/notification/application/use-cases/send-notification'
 import { InMemoryNotificationsRepository } from 'test/repositories/in-memory-notification-repository'
 import { makeQuestion } from 'test/factories/make-question'
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
