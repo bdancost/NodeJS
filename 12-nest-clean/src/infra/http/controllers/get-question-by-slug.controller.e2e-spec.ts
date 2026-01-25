@@ -1,14 +1,14 @@
 import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug'
 import { AppModule } from '@/infra/app.module'
+import { DatabaseModule } from '@/infra/database/database.module'
 import { INestApplication } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { Test } from '@nestjs/testing'
 import request from 'supertest'
-import { StudentFactory } from 'test/factories/make-student'
-import { QuestionFactory } from 'test/factories/make-question'
-import { DatabaseModule } from '@/infra/database/database.module'
 import { AttachmentFactory } from 'test/factories/make-attachment'
+import { QuestionFactory } from 'test/factories/make-question'
 import { QuestionAttachmentFactory } from 'test/factories/make-question-attachments'
+import { StudentFactory } from 'test/factories/make-student'
 
 describe('Get question by slug (E2E)', () => {
   let app: INestApplication
